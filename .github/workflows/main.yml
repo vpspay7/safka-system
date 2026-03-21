@@ -2,8 +2,8 @@ name: Auto Scraper System
 
 on:
   schedule:
-    - cron: '0 */6 * * *' # السكريبت هيشتغل لوحده كل 6 ساعات
-  workflow_dispatch: # زرار عشان تشغله يدوي لو حبيت
+    - cron: '0 */6 * * *' # هيشتغل كل 6 ساعات
+  workflow_dispatch: # للتشغيل اليدوي
 
 jobs:
   run-scraper:
@@ -18,5 +18,7 @@ jobs:
         run: pip install -r requirements.txt
       - name: Run Scraper
         env:
-          GOOGLE_SHEETS_CREDENTIALS: ${{ secrets.GCP_KEY }}
+          GCP_KEY: ${{ secrets.GCP_KEY }}
+          SAFKA_EMAIL: ${{ secrets.SAFKA_EMAIL }}
+          SAFKA_PASSWORD: ${{ secrets.SAFKA_PASSWORD }}
         run: python scraper.py
