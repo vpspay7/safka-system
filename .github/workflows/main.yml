@@ -1,0 +1,22 @@
+name: Auto Scraper System
+
+on:
+  schedule:
+    - cron: '0 */6 * * *' # السكريبت هيشتغل لوحده كل 6 ساعات
+  workflow_dispatch: # زرار عشان تشغله يدوي لو حبيت
+
+jobs:
+  run-scraper:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Run Scraper
+        env:
+          GOOGLE_SHEETS_CREDENTIALS: ${{ secrets.GCP_KEY }}
+        run: python scraper.py
