@@ -1,0 +1,6 @@
+gspread
+google-auth
+pandas
+selenium
+webdriver-manager
+streamlit
