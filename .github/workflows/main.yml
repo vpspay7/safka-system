@@ -2,23 +2,26 @@ name: Auto Scraper System
 
 on:
   schedule:
-    - cron: '0 */6 * * *' # هيشتغل كل 6 ساعات
-  workflow_dispatch: # للتشغيل اليدوي
+    - cron: '0 */6 * * *' # هيشتغل أوتوماتيك كل 6 ساعات
+  workflow_dispatch: # زرار التشغيل اليدوي اللي بتدوس عليه
 
 jobs:
   run-scraper:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.9'
+          
       - name: Install dependencies
         run: pip install -r requirements.txt
+        
       - name: Run Scraper
         env:
           GCP_KEY: ${{ secrets.GCP_KEY }}
           SAFKA_EMAIL: ${{ secrets.SAFKA_EMAIL }}
           SAFKA_PASSWORD: ${{ secrets.SAFKA_PASSWORD }}
-        run: python scraper.py
+        run: python scraper.py  # السطر ده هو اللي كان ناقص وخلى السيستم يدي 404
