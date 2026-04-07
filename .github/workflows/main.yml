@@ -21,7 +21,8 @@ jobs:
         
       - name: Run Scraper
         env:
+          FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true # السطر ده هيشيل التحذير فوراً
           GCP_KEY: ${{ secrets.GCP_KEY }}
           SAFKA_EMAIL: ${{ secrets.SAFKA_EMAIL }}
           SAFKA_PASSWORD: ${{ secrets.SAFKA_PASSWORD }}
-        run: python scraper.py  # السطر ده هو اللي كان ناقص وخلى السيستم يدي 404
+        run: python scraper.py
